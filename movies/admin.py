@@ -6,7 +6,7 @@ from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 class MovieAdminForm(forms.ModelForm):
-    description = forms.CharField(label='Описание!',widget=CKEditorUploadingWidget())
+    description = forms.CharField(label='Описание',widget=CKEditorUploadingWidget())
 
     class Meta:
         model = Movie
@@ -39,13 +39,13 @@ class MovieAdmin(admin.ModelAdmin):
     form = MovieAdminForm
     fieldsets = (
         (None, {
-            "fields": (("title", "tagline"),)
+            "fields": ("title", "kinopoisk_id")
         }),
         (None, {
             "fields": ("description", "poster")
         }),
         (None, {
-            "fields": (("year", "world_premiere", "country"),)
+            "fields": (("year", "country"),)
         }),
         ("Actors", {
             "classes": ("collapse",),

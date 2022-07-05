@@ -7,7 +7,7 @@ from django.urls import reverse
 class Category(models.Model):
     """Категории"""
     name = models.CharField("Категория", max_length=150)
-    description = models.TextField("Описание")
+    #description = models.TextField("Описание")
     url = models.SlugField(max_length=160, unique=True)
 
     def __str__(self):
@@ -22,7 +22,7 @@ class Category(models.Model):
 class Genre(models.Model):
     """Жанры"""
     name = models.CharField("Имя", max_length=100)
-    description = models.TextField("Описание")
+    #description = models.TextField("Описание")
     url = models.SlugField(max_length=160, unique=True)
 
     def __str__(self):
@@ -36,15 +36,16 @@ class Genre(models.Model):
 class Movie(models.Model):
     """Фильм"""
     title = models.CharField("Название", max_length=100)
-    tagline = models.CharField("Слоган", max_length=100, default='')
+    #tagline = models.CharField("Слоган", max_length=100, default='')
     description = models.TextField("Описание")
+    kinopoisk_id = models.IntegerField("Кинопоиск_id", default=0)
     poster = models.ImageField("Постер", upload_to="movies/")
     year = models.PositiveSmallIntegerField("Дата выхода", default=2019)
     country = models.CharField("Страна", max_length=30)
     directors = models.CharField("Режиссер", max_length=100)
     actors = models.CharField("Актеры", max_length=200)
     genres = models.ManyToManyField(Genre, verbose_name="жанры")
-    world_premiere = models.DateField("Премьера в мире", default=date.today)
+    #world_premiere = models.DateField("Премьера в мире", default=date.today)
     category = models.ForeignKey(
         Category, verbose_name="Категория", on_delete=models.SET_NULL, null=True
     )
